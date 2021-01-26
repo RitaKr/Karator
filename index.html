@@ -22,8 +22,8 @@
                 <button id="addStudent" class="btn">Додати учня</button>
             </form>
             <form id="mark-generation-form" class="light">
-                <input type="number" class="num-input" id="minMark" name="minMark" placeholder="Мін." value="1" min="0">
-                <input type="number" class="num-input" id="maxMark" name="maxMark" placeholder="Макс." value="12" max="12">    
+                <input type="number" class="num-input" id="minMark" name="minMark" placeholder="Мін." value="1" min="0" max="12" title="Мінімальна оцінка">
+                <input type="number" class="num-input" id="maxMark" name="maxMark" placeholder="Макс." value="12" min="0" max="12" title="Максимальна оцінка">    
                 <button id="generateMarks" class="btn">Згенерувати оцінки для всього класу</button>
             </form>
             <div id="students-list">
@@ -62,8 +62,8 @@
         </div>
 
         <div id="classes-menu">
-            <h2>Ваші класи</h2>
-            <form  class="light">
+            <h1>Ваші класи</h1>
+            <form  class="dark">
                 <input type="text" id="classInput" name="classInput" placeholder="Введіть назву класу">
                 <button id="addClass" class="btn">Додати клас</button>
             </form>

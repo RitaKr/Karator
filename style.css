@@ -44,7 +44,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-
+    padding: 1vw 0;
 }
 #class-block {
     width: 70vw;
@@ -52,13 +52,37 @@ body {
     flex-flow: column nowrap;
     align-items: center;
     background: rgb(255, 255, 255);
-    padding: 1vw 0;
+    
 }
 #classes-menu {
     width: 30vw;
     background: rgb(255, 255, 255);
-    padding: 1vw;
+    
 }
+
+#classesList {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    width: calc(100% - 2vw);
+    padding: 0;
+    margin: 1vw;
+}
+#classesList li {
+    padding: 1vw 1.5vw;
+    list-style: none;
+    background: rgb(78, 76, 92);
+    color: white;
+    font-size: 1.2em;
+    margin: .5vw 0;
+    border-radius: .4vw;
+    width: calc(100% );
+    cursor: pointer;
+}
+
+
 #class-list-management {
     align-items: center;
     justify-content: center;
@@ -81,6 +105,14 @@ body {
 .dark {
     background:rgb(78, 76, 92);
     color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 1vw;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
 }
 .light {
     background:rgb(255, 255, 255);
@@ -122,6 +154,9 @@ body {
     width: 5vw;
     margin: 0 .5vw;
 }
+#classInput {
+    width: 40%;
+}
 #students-list {
     background: rgb(255, 255, 255);
     color: rgb(78, 76, 92);
@@ -155,7 +190,7 @@ body {
     padding: 1vw 1.5vw;
     background: rgb(190, 67, 67);
     color: white;
-    letter-spacing: 0.2vw;
+    letter-spacing: 0.12vw;
     font-weight: lighter;
     box-shadow: rgba(0, 0, 0, 0.2) 0 5px 10px;
     border-radius: .2vw;
@@ -170,26 +205,7 @@ input:focus, button:focus {
     outline: none;
 }
 
-#classesList {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: left;
-    width: 100%;
-    padding: 0;
-}
-#classesList li {
-    padding: 1vw 1.5vw;
-    list-style: none;
-    background: rgb(78, 76, 92);
-    color: white;
-    font-size: 1.2em;
-    margin: .5vw 0;
-    border-radius: .4vw;
-    width: calc(100% );
-    cursor: pointer;
-}
+
 
 
 #gradient {
@@ -289,5 +305,14 @@ input:focus, button:focus {
         padding: 1em;
         border-radius: 0.5em;
         margin: 0.8em 0.4em;
+    }
+    .num-input {
+        width: 3em
+    }
+    .dark input, .light input {
+        padding: 0.75em
+    }
+    #classInput {
+        width: initial;
     }
 }
