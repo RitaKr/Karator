@@ -32,7 +32,7 @@ body {
 }
 #main {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin: 2vw;
 }
 #main h1, #main h2 {
