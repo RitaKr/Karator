@@ -84,14 +84,13 @@ addClassBtn.addEventListener('click', addClass);
 
 
 function addStudent(e){
-    let chossenClassId;
-    dataObj.classes.forEach(cl =>{
-        if (cl.isChosen==true) {
-            chossenClassId = cl.id;
-        }
-    })
-    let studentsArr = dataObj.classes[chossenClassId].students;
     e.preventDefault();
+
+    let chossenClassId;
+    chossenClassId = findChosenClass().id;
+    
+    let studentsArr = dataObj.classes[chossenClassId].students;
+    
     let studentName= studentInput.value;
     console.log(studentName);
     if (studentName!=null && studentName!=" " && studentName!="") {
@@ -102,6 +101,7 @@ function addStudent(e){
         studentsArr.push(studentObj);
         */
        studentsArr.push(studentName);
+       findChosenClass().marks.push({student: `${studentName}`, mark: ''})
         console.log('this class ',dataObj.classes[chossenClassId]);
         console.log('this class students ',studentsArr);
         
@@ -133,10 +133,40 @@ function fillTable(cl, arr, name){
     return markTdArr;
 }
 
+function sortAlphabet() {
+    findChosenClass().students.sort();
+    //findChosenClass().marks.sort();
+    let students = findChosenClass().students;
+    let marks = findChosenClass().marks;
+    console.log('do ',marks);
+    marks.sort((a, b) => a.student > b.student ? 1 : -1);
+
+    console.log(students);
+    console.log('posle ',marks);
+    studentsTable.innerHTML='';
+    students.forEach((item, i) => {
+        marksTdArr = fillTable(findChosenClass(), students, item)//cl, arr, name
+        //console.log(marksTdArr);
+        
+        marksTdArr.forEach((td, i)=> {
+            td.innerHTML=marks[i].mark;
+            colorMarks(findChosenClass(), td, i)
+        })
+        //appendMarks(thisClass, marksTdArr)
+    });
+}
 
 
-
-
+function findChosenClass(){
+    let chossenClass;
+    dataObj.classes.forEach(cl =>{
+        if (cl.isChosen==true) {
+            chossenClass = cl;
+    
+        }
+    });
+    return chossenClass;
+}
 
 
 
@@ -170,8 +200,10 @@ function chooseClass(clName){
     thisClass.students.forEach(item => {
         marksTdArr = fillTable(thisClass, thisClass.students, item)//cl, arr, name
         console.log(marksTdArr);
+        console.log(thisClass.marks);
         marksTdArr.forEach((td, i)=> {
-            td.innerHTML=thisClass.marks[i];
+            console.log(thisClass.marks[i]);
+            td.innerHTML=thisClass.marks[i].mark;
             colorMarks(thisClass, td, i)
         })
         //appendMarks(thisClass, marksTdArr)
@@ -183,15 +215,15 @@ function chooseClass(clName){
 generateMarksBtn.addEventListener('click', ()=>{
     let chossenClass;
     let chossenClassName;
-    dataObj.classes.forEach(cl =>{
-        if (cl.isChosen==true) {
-            chossenClass = cl;
-            chossenClassName = `cl${cl.className}`;
-        }
-    })
-    let marksTdArr = chooseClass(chossenClassName);
-    console.log(chossenClass, marksTdArr);
-    appendMarks(chossenClass, marksTdArr);
+    chossenClass = findChosenClass();
+    chossenClassName = `cl${chossenClass.className}`;
+     if (chossenClass.students.length>0) {
+        let marksTdArr = chooseClass(chossenClassName);
+        //console.log(chossenClass, marksTdArr);
+        appendMarks(chossenClass, marksTdArr);
+    } else {
+        alert('У цьому класі ще нема учнів!')
+    }
 })
 
 function openClassList(clName){
@@ -200,21 +232,30 @@ function openClassList(clName){
 
 function appendMarks(cl, marksTdArr) {
     marksTdArr.forEach((td, i) => {
-        cl.marks[i]=generateMark();
-        colorMarks(cl, td, i)
-        td.innerHTML=cl.marks[i];
+        cl.marks[i]= {
+            student: cl.students[i],
+            mark: generateMark()
+        };
+        colorMarks(cl, td, i);
+        td.innerHTML=cl.marks[i].mark;
     })
 }
 function colorMarks(cl, td, i) {
-    if (cl.marks[i]==1 || cl.marks[i]==2) {
-        //td.classList.clear();
-        td.classList.add('mark1-2');
-    }
-    if (cl.marks[i]==3 || cl.marks[i]==4) td.classList.add('mark3-4');
-    if (cl.marks[i]==5 || cl.marks[i]==6) td.classList.add('mark5-6');
-    if (cl.marks[i]==7 || cl.marks[i]==8) td.classList.add('mark7-8');
-    if (cl.marks[i]==9 || cl.marks[i]==10) td.classList.add('mark9-10');
-    if (cl.marks[i]==11 || cl.marks[i]==12) td.classList.add('mark11-12');
+    clearTdClasses(td)
+    if (cl.marks[i].mark==1 || cl.marks[i].mark==2) td.classList.add('mark1-2');
+    if (cl.marks[i].mark==3 || cl.marks[i].mark==4) td.classList.add('mark3-4');
+    if (cl.marks[i].mark==5 || cl.marks[i].mark==6) td.classList.add('mark5-6');
+    if (cl.marks[i].mark==7 || cl.marks[i].mark==8) td.classList.add('mark7-8');
+    if (cl.marks[i].mark==9 || cl.marks[i].mark==10) td.classList.add('mark9-10');
+    if (cl.marks[i].mark==11 || cl.marks[i].mark==12) td.classList.add('mark11-12');
+}
+function clearTdClasses(td){
+    td.classList.remove('mark1-2');
+    td.classList.remove('mark3-4');
+    td.classList.remove('mark5-6');
+    td.classList.remove('mark7-8');
+    td.classList.remove('mark9-10');
+    td.classList.remove('mark11-12');
 }
 function generateMark() {
     return Math.floor(Math.random()*12)+1;
