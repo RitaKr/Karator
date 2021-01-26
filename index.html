@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каратор - надійний помічник куратора</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <span><img src="images/logo.png" class="logo" alt="logo"></span>
+        <span>
+        <h1>КАРАТОР</h1>
+        <h4>Надійний помічник куратора</h4>
+    </span>
+    </div>
+    <div id="main">
+        <div id="class-block">
+            <h1>Цей клас <span id="class-name-span"></span></h1>
+            <form id="class-list-management">
+                <input type="text" id="studentInput" name="studentInput" placeholder="Введіть прізвище учня">
+                <button id="addStudent" class="btn">Додати учня</button>
+            </form>
+            <button id="generateMarks" class="btn">Згенерувати оцінки для всього класу</button>
+            <div id="students-list">
+                <h2>Список класу</h2>
+                <table class="studentsTable">
+                    <thead>
+                <tr>
+                    <td>№</td>
+                    <td>Прізвище учня</td>
+                    <td>Оцінка</td>
+                </tr>
+            </thead>
+                <tbody id="studentsTable">
+
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="classes-menu">
+            <h2>Ваші класи</h2>
+            <form>
+                <input type="text" id="classInput" name="classInput" placeholder="Введіть назву класу">
+                <button id="addClass" class="btn">Додати клас</button>
+            </form>
+            <ul id="classesList">
+            </ul>
+        </div>
+    </div>
+<button class="btn" id="clearData" onclick="localStorage.removeItem('karatorData')">Очистити дані</button>
+    
+    <script src="script.js"></script>
+    
+</body>
+</html>

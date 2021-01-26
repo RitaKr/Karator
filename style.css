@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: rgb(252, 183, 197);
+    font-size: 1.2vw;
+}
+.logo {
+    height: 5vw;
+    
+}
+#header {
+    width: 100%;
+    padding: 15px;
+    background: rgb(52, 47, 79);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    
+}
+#header h1 {
+    color: white;
+}
+#header h4 {
+    color: rgb(129, 124, 160);
+}
+#main {
+    display: flex;
+    margin: 2vw;
+}
+#main h1, #main h2 {
+    color: rgb(78, 76, 92);
+}
+#main > div {
+    margin: 1vw;
+    border-radius: 0.8vw;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+}
+#class-block {
+    width: 70vw;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    padding: 1vw 0;
+}
+#classes-menu {
+    width: 30vw;
+    background: rgb(255, 255, 255);
+    padding: 1vw;
+}
+#class-list-management {
+    background:rgb(78, 76, 92);
+    color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 1vw;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#students-list {
+    background: rgb(255, 255, 255);
+    color: rgb(78, 76, 92);
+    width: 100%;
+    padding: 1vw;
+    border-top: rgba(78, 76, 92, .5) dotted 0.2vw;
+    margin-top: 1vw;
+}
+.studentsTable {
+    border: 1px solid rgb(78, 76, 92);
+    border-collapse: collapse;
+    margin: 1vw 0;
+    width: calc(100%);
+}
+.studentsTable td, #studentsTable td {
+    border: 1px solid rgb(152, 152, 156);
+    padding: 0.5vw;
+}
+.studentsTable td:nth-child(3), .studentsTable td:nth-child(1) {
+    width: 12%;
+    text-align: center;
+}
+.studentsTable thead {
+    color: white;
+    background: rgb(78, 76, 92);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.btn {
+    border: none;
+    padding: 1vw 1.5vw;
+    background: rgb(190, 67, 67);
+    color: white;
+    letter-spacing: 0.2vw;
+    font-weight: lighter;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 5px 10px;
+    border-radius: .2vw;
+    margin: 0.5vw;
+    transition: all .5s ease;
+}
+#studentInput {
+    padding: .8vw;
+    background: none;
+    border: none;
+    border-bottom: 2px rgb(255, 255, 255) solid;
+    transition: all .3s ease;
+}
+#studentInput::placeholder {
+    color: rgba(255, 255, 255, 0.8)
+}
+#studentInput:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 2px rgba(255, 255, 255, 0) solid;
+}
+#classInput {
+    padding: .8vw;
+    background: none;
+    border: none;
+    border-bottom: 2px rgb(78, 76, 92) solid;
+    transition: all .3s ease;
+}
+#classInput::placeholder {
+    color: rgba(78, 76, 92, 0.8)
+}
+#classInput:focus {
+    background: rgba(78, 76, 92, .2);
+    border-bottom: 2px rgba(255, 255, 255, 0) solid;
+}
+.btn:hover {
+    background: rgb(243, 118, 118);
+}
+input:focus, button:focus {
+    outline: none;
+}
+
+#classesList {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%;
+    padding: 0;
+}
+#classesList li {
+    padding: 1vw 1.5vw;
+    list-style: none;
+    background: rgb(78, 76, 92);
+    color: white;
+    font-size: 1.2em;
+    margin: .5vw 0;
+    border-radius: .4vw;
+    width: calc(100% );
+    cursor: pointer;
+}
+
+
+.mark-td {
+    font-weight: bold;
+    
+}
+.mark1-2 {
+    color:rgb(168, 0, 0);
+}
+.mark3-4 {
+    color:rgb(184, 73, 0)
+}
+.mark5-6 {
+    color:rgb(187, 112, 0)
+}
+.mark7-8 {
+    color:rgb(187, 153, 0)
+}
+.mark9-10 {
+    color:rgb(140, 172, 0)
+}
+.mark11-12 {
+    color:rgb(0, 170, 9)
+}
+#clearData {
+    transform: translateX(calc(50vw - 50%));
+}
