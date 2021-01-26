@@ -6,7 +6,8 @@ const classInput = document.getElementById("classInput");
 const addClassBtn = document.getElementById("addClass");
 const classesListUl = document.getElementById("classesList");
 const classNameSpan = document.getElementById("class-name-span");
-
+const minMarkInput = document.getElementById("minMark");
+const maxMarkInput = document.getElementById("maxMark");
 
 let i = 0;
 
@@ -212,7 +213,8 @@ function chooseClass(clName){
     return marksTdArr;
     
 }
-generateMarksBtn.addEventListener('click', ()=>{
+generateMarksBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
     let chossenClass;
     let chossenClassName;
     chossenClass = findChosenClass();
@@ -241,24 +243,35 @@ function appendMarks(cl, marksTdArr) {
     })
 }
 function colorMarks(cl, td, i) {
-    clearTdClasses(td)
+    clearTdClasses(td);
+    td.classList.add(`mark${cl.marks[i].mark}`);
+    /*
     if (cl.marks[i].mark==1 || cl.marks[i].mark==2) td.classList.add('mark1-2');
     if (cl.marks[i].mark==3 || cl.marks[i].mark==4) td.classList.add('mark3-4');
     if (cl.marks[i].mark==5 || cl.marks[i].mark==6) td.classList.add('mark5-6');
     if (cl.marks[i].mark==7 || cl.marks[i].mark==8) td.classList.add('mark7-8');
     if (cl.marks[i].mark==9 || cl.marks[i].mark==10) td.classList.add('mark9-10');
     if (cl.marks[i].mark==11 || cl.marks[i].mark==12) td.classList.add('mark11-12');
+    */
 }
 function clearTdClasses(td){
+    for (let i=0; i<=12; i++) {
+        td.classList.remove(`mark${i}`);
+    }
+    /*
     td.classList.remove('mark1-2');
     td.classList.remove('mark3-4');
     td.classList.remove('mark5-6');
     td.classList.remove('mark7-8');
     td.classList.remove('mark9-10');
     td.classList.remove('mark11-12');
+    */
 }
 function generateMark() {
-    return Math.floor(Math.random()*12)+1;
+    let min = +minMark.value;
+    let max = +maxMark.value;
+    let mark = Math.floor(Math.random()*(max-min+1))+min;
+    return mark
     
 }
 

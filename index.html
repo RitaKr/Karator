@@ -17,13 +17,34 @@
     <div id="main">
         <div id="class-block">
             <h1>Цей клас <span id="class-name-span"></span></h1>
-            <form id="class-list-management">
+            <form id="class-list-management" class="dark">
                 <input type="text" id="studentInput" name="studentInput" placeholder="Введіть прізвище учня">
                 <button id="addStudent" class="btn">Додати учня</button>
             </form>
-            <button id="generateMarks" class="btn">Згенерувати оцінки для всього класу</button>
+            <form id="mark-generation-form" class="light">
+                <input type="number" class="num-input" id="minMark" name="minMark" placeholder="Мін." value="1" min="0">
+                <input type="number" class="num-input" id="maxMark" name="maxMark" placeholder="Макс." value="12" max="12">    
+                <button id="generateMarks" class="btn">Згенерувати оцінки для всього класу</button>
+            </form>
             <div id="students-list">
                 <h2>Список класу</h2>
+                <!--<div id="gradient"></div>
+                <div height="40px" width="800px" id="gradient2">
+                    <span bg="rgb(114, 0, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(151, 0, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(177, 27, 0)" height="40px" width="40px"></span>
+                    <span background=" rgb(184, 73, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(189, 92, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(187, 112, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(187, 137, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(187, 153, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(187, 184, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(148, 182, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(106, 182, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(48, 170, 0)" height="40px" width="40px"></span>
+                    <span background="rgb(0, 150, 72)" height="40px" width="40px"></span>
+                </div>
+            -->
                 <button class="btn" onclick="sortAlphabet()">Сортувати учнів у алфавітному порядку</button>
                 <table class="studentsTable">
                     <thead>
@@ -42,7 +63,7 @@
 
         <div id="classes-menu">
             <h2>Ваші класи</h2>
-            <form>
+            <form  class="light">
                 <input type="text" id="classInput" name="classInput" placeholder="Введіть назву класу">
                 <button id="addClass" class="btn">Додати клас</button>
             </form>
