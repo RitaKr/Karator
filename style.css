@@ -341,4 +341,10 @@ input:focus, button:focus {
     #classInput {
         width: initial;
     }
+    #students-list {
+        font-size: 1em
+    }
+    .delete-btn-std, .delete-btn {
+        width: 1em;
+    }
 }
