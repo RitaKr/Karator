@@ -24,7 +24,10 @@ if (dataObj.classes.length>0) {
         i = dataObj.classes[dataObj.classes.length-1].id+1;
             
 }
-    
+  
+
+//localStorage.karatorData = JSON.stringify(dataObj, 'classes');
+
 window.onload = init;
 function init(){
     dataObj.classes.forEach(item => {
@@ -37,11 +40,46 @@ function init(){
 
 function addClassLi(className){
     let li = document.createElement('li');
-    li.innerHTML = `Класс ${className}`;
+    li.innerHTML = `Класс ${className} <img src="images/delete.png" id="deletecl${className}" class="delete-btn" alt="Видалити цей класс" title="Видалити цей класс" onclick="deleteClass('${className}')">`;
     li.setAttribute('id', 'cl'+className);
     li.setAttribute('class', 'classLi');
     li.setAttribute('onclick', 'chooseClass(this.id)');
+    li.setAttribute('onmouseover', 'showDeleteBtn(this.id)');
+    li.setAttribute('onmouseout', 'hideDeleteBtn(this.id)');
     classesListUl.appendChild(li);
+}
+function showDeleteBtn(classLiId) {
+    //console.log(document.querySelector(`#delete${classLiId}`))
+    document.querySelector(`#delete${classLiId}`).style.opacity=1;
+    
+}
+function hideDeleteBtn(classLiId) {
+    //console.log(document.querySelector(`#delete${classLiId}`))
+    document.querySelector(`#delete${classLiId}`).style.opacity=0;
+
+}
+
+function deleteClass(clName) {
+    dataObj.classes.forEach(cl => {
+        if (cl.className == clName) {
+            console.log(cl, cl.id);
+            
+            if (dataObj.classes.length<2) alert('Занадто мало класів щоб видалити цей клас! Додайте хоча б ще один клас');
+            else {
+                if (cl.id==0) chooseClass(`cl${dataObj.classes[cl.id+1].className}`);
+                else chooseClass(`cl${dataObj.classes[cl.id-1].className}`);
+                
+                dataObj.classes.splice(cl.id, 1);
+                localStorage.karatorData = JSON.stringify(dataObj, 'classes');
+                
+                document.querySelector(`#cl${clName}`).remove();
+            }
+        }
+    })
+    dataObj.classes.forEach((cl, i) => {
+        cl.id=i;
+    })
+    localStorage.karatorData = JSON.stringify(dataObj, 'classes');
 }
 
 function addClass(e){
@@ -93,6 +131,7 @@ function addStudent(e){
     let studentsArr = dataObj.classes[chossenClassId].students;
     
     let studentName= studentInput.value;
+    studentName=studentName.charAt(0).toUpperCase() + studentName.slice(1);
     console.log(studentName);
     if (studentName!=null && studentName!=" " && studentName!="") {
         /*let studentObj = {
@@ -122,17 +161,57 @@ addStudentBtn.addEventListener('click', addStudent);
 
 function fillTable(cl, arr, name){
     let tr = document.createElement('tr');
-    tr.innerHTML = `<td>${arr.indexOf(name)+1}</td>
+    tr.innerHTML = `<td>
+    <img src="images/delete.png" id="deletestd${arr.indexOf(name)}" class="delete-btn-std" alt="Видалити цього учня" title="Видалити цього учня" onclick="deleteStudent('${arr.indexOf(name)}')">
+    <span id="spanstd${arr.indexOf(name)}">${arr.indexOf(name)+1}</span></td>
     <td>${name}</td>
     <td class="mark-td"></td>
     `;
     tr.setAttribute('id', 'std'+arr.indexOf(name));
     tr.setAttribute('class', 'studentTr');
+    tr.setAttribute('onmouseover', 'showDeleteStudentBtn(this, this.id)');
+    tr.setAttribute('onmouseout', 'hideDeleteStudentBtn(this, this.id)');
    // li.setAttribute('onclick', 'chooseClass(this.id)');
     studentsTable.appendChild(tr);
     let markTdArr = document.querySelectorAll('.mark-td');
+    
     return markTdArr;
 }
+function showDeleteStudentBtn(tr, id) {
+    //console.log(tr, id);
+    tr.style.background = 'rgba(243, 118, 118, .3)'
+    //let td = document.querySelector(`#${id} td:nth-child(1)`);
+    //console.log(id)
+    //td.innerHTML = `<img src="images/delete.png" id="deletestd${id}" class="delete-btn-std" alt="Видалити цього учня" title="Видалити цього учня" onclick="deleteStudent('${id}')">`;
+    document.querySelector(`#span${id}`).style.display='none';
+    document.querySelector(`#delete${id}`).style.display='inline-block';
+    
+
+}
+
+function hideDeleteStudentBtn(tr, id) {
+    //let td = document.querySelector(`#${id} td:nth-child(1)`);
+    tr.style.background = 'none'
+    //td.innerHTML = id.slice(3);
+    document.querySelector(`#span${id}`).style.display='inline-block';
+    document.querySelector(`#delete${id}`).style.display='none';
+}
+
+function deleteStudent(id) {
+    let students = findChosenClass().students;
+    console.log(students);
+    
+    //if (students<2) alert('Занадто мало класів щоб видалити цей клас! Додайте хоча б ще один клас');
+            //else {                
+                students.splice(id, 1);
+                findChosenClass().marks.splice(id, 1);
+                localStorage.karatorData = JSON.stringify(dataObj, 'classes');
+                
+                document.querySelector(`#std${id}`).remove();
+           // }
+           
+}
+
 
 function sortAlphabet() {
     findChosenClass().students.sort();
@@ -200,10 +279,10 @@ function chooseClass(clName){
     studentsTable.innerHTML='';
     thisClass.students.forEach(item => {
         marksTdArr = fillTable(thisClass, thisClass.students, item)//cl, arr, name
-        console.log(marksTdArr);
-        console.log(thisClass.marks);
+        //console.log(marksTdArr);
+        //console.log(thisClass.marks);
         marksTdArr.forEach((td, i)=> {
-            console.log(thisClass.marks[i]);
+            //console.log(thisClass.marks[i]);
             td.innerHTML=thisClass.marks[i].mark;
             colorMarks(thisClass, td, i)
         })

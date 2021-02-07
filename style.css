@@ -79,6 +79,9 @@ body {
     margin: .5vw 0;
     border-radius: .4vw;
     width: calc(100% );
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     cursor: pointer;
 }
 
@@ -164,6 +167,8 @@ body {
     padding: 1vw;
     border-top: rgba(78, 76, 92, .5) dotted 0.2vw;
     margin-top: 1vw;
+    font-size: 1.5vw;
+    text-transform: capitalize;
 }
 .studentsTable {
     border: 1px solid rgb(78, 76, 92);
@@ -174,10 +179,14 @@ body {
 .studentsTable td, #studentsTable td {
     border: 1px solid rgb(152, 152, 156);
     padding: 0.5vw;
+    
 }
+
+
 .studentsTable td:nth-child(3), .studentsTable td:nth-child(1) {
     width: 12%;
     text-align: center;
+    height: 4vw;
 }
 .studentsTable thead {
     color: white;
@@ -203,6 +212,23 @@ body {
 }
 input:focus, button:focus {
     outline: none;
+}
+
+.delete-btn {
+    width: 3vw;
+    opacity: 0;
+    transition: all .2s  ease;
+    cursor:pointer;
+}
+.delete-btn:hover, .delete-btn-std:hover {
+    transform: scale(1.1);
+}
+.delete-btn-std {
+    width: 2.5vw;
+    opacity: 1;
+    display: none;
+    transition: all .2s  ease;
+    cursor:pointer;
 }
 
 
